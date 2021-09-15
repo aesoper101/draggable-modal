@@ -1,0 +1,150 @@
+.draggable-modal {
+  position: absolute;
+  background: #fff;
+  margin: auto;
+  overflow: hidden;
+  z-index: 9999;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
+  &__bg {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9031;
+    overflow: hidden;
+  }
+
+  &__header {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 35px;
+    border-bottom: 1px solid #e3e2e8;
+    user-select: none;
+    cursor: move;
+    background-color: #fff;
+    height: 65px;
+
+    .title {
+      font-size: 16px;
+      line-height: 1;
+      color: #333;
+      max-width: 50%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sub-title {
+      font-size: 12px;
+      line-height: 1;
+      color: #666;
+      margin-left: 5px;
+    }
+
+    .close-icon {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 23px;
+      right: 30px;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+
+    .left-wrapper {
+      width: 142px;
+      height: 100%;
+      float: left;
+      text-align: center;
+      border-right: 1px solid #e3e2e8;
+      position: relative;
+
+      .tab-item {
+        position: relative;
+        height: 65px;
+        line-height: 65px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-left: 0;
+        transition: border-bottom 0.2s ease, border-top 0.2s ease;
+        margin-top: -1px;
+
+        &:first-child {
+          border-top: 0;
+        }
+
+        &.active {
+          margin-right: -1px;
+          color: #557ce1;
+          border-right-color: #fff;
+          border-top-color: #e3e2e8;
+          border-bottom-color: #e3e2e8;
+
+          &::after {
+            content: "";
+            width: 3px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #4573fb;
+            border-radius: 0 3px 3px 0;
+            transition: background-color 0.3s ease;
+          }
+        }
+
+        .text {
+          font-size: 14px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .right-wrapper {
+      overflow: hidden;
+      height: 100%;
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    border-top: 1px solid #e3e2e8;
+    z-index: 1;
+    background-color: #fff;
+
+    &-inner {
+      text-align: center;
+      margin-bottom: 28px;
+      margin-top: 28px;
+
+      .btn {
+        margin: 0 18px;
+        padding: 0 28px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__pane {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
