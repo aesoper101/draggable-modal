@@ -1,7 +1,8 @@
 <script setup lang="ts">
   // This starter template is using Vue 3 <script setup> SFCs
   // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-  import { DraggableModal, DraggableModalPanel } from "draggable-modal";
+  // import { DraggableModal, DraggableModalPanel } from "draggable-modal";
+  import { DraggableModal, DraggableModalPanel } from "../components";
   import "draggable-modal/style.css";
 </script>
 

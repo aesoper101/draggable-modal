@@ -43,6 +43,7 @@ export const DraggableModalProps = {
       return {};
     },
   },
+  tabType: propTypes.oneOf(["left", "top"]).def("top"),
 };
 
 export const ATTR_MODAL_KEY = "My-ATTR_MODAL_KEY";
@@ -215,11 +216,25 @@ export default defineComponent({
       };
     });
 
+    const renderTopBar = () => {
+      return items.value.map((value) => {
+        const itemClass = ["bar-item", { active: activeIndex.value === value.name }];
+        return (
+          <div class={itemClass} onClick={() => changeActiveItem(value)}>
+            {value.label}
+          </div>
+        );
+      });
+    };
+
     const renderHeader = () => {
       return (
         <div ref={headerEle} class={b("header")} onMousedown={onMouseDown} onMouseup={onMouseUp}>
-          <div class="title">{props.title}</div>
+          {props.title && <div class="title">{props.title}</div>}
           {props.subTitle && <div class="sub-title">{props.subTitle}</div>}
+          {props.tabType === "top" && items.value.length > 0 && (
+            <div class="bar-nav">{renderTopBar()}</div>
+          )}
           {props.closeable && (
             <div class="close-icon">
               <CloseOutlined
@@ -232,7 +247,7 @@ export default defineComponent({
       );
     };
 
-    const renderBar = () => {
+    const renderLeftBar = () => {
       const nodes = items.value.map((v) => {
         const itemClass = ["tab-item", { active: activeIndex.value === v.name }];
         return (
@@ -248,7 +263,7 @@ export default defineComponent({
     const renderContent = () => {
       return (
         <div class={b("content")} style={getContentStyle.value}>
-          {items.value.length > 0 && renderBar()}
+          {props.tabType === "left" && items.value.length > 0 && renderLeftBar()}
           <div class="right-wrapper" style={props.bodyStyle}>
             {slots.default?.()}
           </div>
